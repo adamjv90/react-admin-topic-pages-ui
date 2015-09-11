@@ -39,14 +39,19 @@ export default React.createClass({
       <li className={klass} key={i}>
         <div className='menu-item-title'>{item.topic}</div>
         <div className="menu-item-actions">
-          <span className='menu-item-actions-action menu-item-actions-edit-slides' onClick={partial(this.props.onAction, item.topic, 'edit-slides')}>
-            <span className="menu-item-action-count">({item.slides.length})</span>
-            <span className="menu-item-actions-label">Slides</span>
-          </span>
-          <span className='menu-item-actions-action menu-item-actions-edit-facetes' onClick={partial(this.props.onAction, item.topic, 'edit-facetes')}>
-            <span className="menu-item-action-count">({item.facetes.length})</span>
-            <span className="menu-item-actions-label">Facetes</span>
-          </span>
+          <div className="menu-item-actions-wrapper">
+            <span className='menu-item-actions-action menu-item-actions-edit-slides' onClick={partial(this.props.onAction, item.topic, 'edit-slides')}>
+              <span className="menu-item-action-count">({item.slides.length})</span>
+              <span className="menu-item-actions-label link">Slides</span>
+            </span>
+            <span className='menu-item-actions-action menu-item-actions-edit-facetes' onClick={partial(this.props.onAction, item.topic, 'edit-facetes')}>
+              <span className="menu-item-action-count">({item.facetes.length})</span>
+              <span className="menu-item-actions-label link">Facetes</span>
+            </span>
+          </div>
+          <div className="menu-item-edit-page-action">
+            <span className='menu-item-cancel-action link' onClick={partial(this.props.onAction, '', '')}>Cancel</span>
+          </div>
         </div>
         <i className="fa fa-close" onClick={partial(this.props.onRemove, item.topic)} />
       </li>
