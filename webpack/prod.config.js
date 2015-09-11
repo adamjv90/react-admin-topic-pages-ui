@@ -24,6 +24,10 @@ config.module.loaders = config.module.loaders.concat([
   {
     test: /\.css$/,
     loader: ExtractTextPlugin.extract('style', 'css?sourceMap!postcss')
+  },
+  {
+    test: /\.scss$/,
+    loader: ExtractTextPlugin.extract('style', 'css!autoprefixer?browsers=last 2 version!sass')
   }
 ]);
 

@@ -1,8 +1,5 @@
 import React, {Component, PropTypes} from 'react/addons';
 
-import Header from 'components/header';
-import Footer from 'components/footer';
-
 if (process.env.BROWSER) {
   require('styles/app.css');
 }
@@ -52,9 +49,6 @@ class App extends Component {
     document.title = title;
   }
 
-  // If we have children components sent by `react-router`
-  // we need to clone them and add them the correct
-  // locale and messages sent from the Locale Store
   renderChild = (child) => {
     return React.addons
       .cloneWithProps(child, {...this.state.i18n});
@@ -63,16 +57,10 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Header
-          {...this.state.i18n}
-          flux={this.props.flux} />
-        <hr />
         {
           React.Children
             .map(this.props.children, this.renderChild)
         }
-        <hr />
-        <Footer />
       </div>
     );
   }

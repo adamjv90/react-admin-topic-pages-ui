@@ -1,13 +1,4 @@
-@import 'normalize.css/normalize';
-
-@import './_fonts';
-@import './_variables';
-
-@import './footer';
-@import './header';
-@import './lang-picker';
-@import './spinner';
-@import './users';
+@import '../../node_modules/normalize.css/normalize.css';
 
 body {
   font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -25,4 +16,17 @@ body {
 
 .un-select {
   user-select: none;
+}
+
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
+
+.clearfix {
+  display: inline-block;
 }
