@@ -31,6 +31,8 @@ const draggableTarget = {
 const DraggableFacete = React.createClass({
   displayName: 'EditSlide',
 
+  mixins: [React.addons.LinkedStateMixin],
+
   propTypes: {
     suggestions: PropTypes.array,
     onChange: PropTypes.func,
@@ -52,6 +54,11 @@ const DraggableFacete = React.createClass({
       sorted: sorted,
       isSortable: !isEqual(props.terms, sorted)
     };
+  },
+
+  indexSelect(value) {
+    console.log(value);
+    this.props.onChange('index', value);
   },
 
   componentWillReceiveProps(nextProps) {
@@ -83,6 +90,11 @@ const DraggableFacete = React.createClass({
             <label style={{'float': 'none'}} className="input__label input__label-content">Facete</label>
             <Input valueLink={{value: this.props.term, requestChange: partial(this.props.onChange, 'term')}} label="Facete" effect="yoko" />
           </div>
+        </div>
+
+        <div className="edit-facete-type">
+          <label style={{'float': 'none'}} className="input__label input__label-content">Index</label>
+          <span>{this.state.index}</span>
         </div>
 
         <div className="edit-facete-terms">

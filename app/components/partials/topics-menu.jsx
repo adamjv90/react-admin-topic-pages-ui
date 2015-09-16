@@ -19,14 +19,15 @@ export default React.createClass({
 
   getInitialState() {
     return {
-      topic: ''
+      topic: '',
+      index: 'images'
     };
   },
 
   handleCreate(e) {
     e.preventDefault();
-    this.props.onCreate(this.state.topic);
-    this.setState({topic: ''});
+    this.props.onCreate(this.state.topic, this.state.index);
+    this.setState(this.getInitialState());
   },
 
   renderItem(item, i) {
@@ -37,20 +38,17 @@ export default React.createClass({
 
     return (
       <li className={klass} key={i}>
-        <div className='menu-item-title'>{item.topic}</div>
+        <div className='menu-item-title'>{item.topic} <span className="index">({item.index})</span></div>
         <div className="menu-item-actions">
           <div className="menu-item-actions-wrapper">
-            <span className='menu-item-actions-action menu-item-actions-edit-slides' onClick={partial(this.props.onAction, item.topic, 'edit-slides')}>
+            <span className='menu-item-actions-action menu-item-actions-edit-slides' onClick={partial(this.props.onAction, item, 'edit-slides')}>
               <span className="menu-item-action-count">({item.slides.length})</span>
               <span className="menu-item-actions-label link">Slides</span>
             </span>
-            <span className='menu-item-actions-action menu-item-actions-edit-facetes' onClick={partial(this.props.onAction, item.topic, 'edit-facetes')}>
+            <span className='menu-item-actions-action menu-item-actions-edit-facetes' onClick={partial(this.props.onAction, item, 'edit-facetes')}>
               <span className="menu-item-action-count">({item.facetes.length})</span>
               <span className="menu-item-actions-label link">Facetes</span>
             </span>
-          </div>
-          <div className="menu-item-edit-page-action">
-            <span className='menu-item-cancel-action link' onClick={partial(this.props.onAction, '', '')}>Cancel</span>
           </div>
         </div>
         <i className="fa fa-close" onClick={partial(this.props.onRemove, item.topic)} />
@@ -70,6 +68,10 @@ export default React.createClass({
         <div className='topic-menu-new'>
           <form onSubmit={this.handleCreate}>
             <Input valueLink={this.linkState('topic')} label="New Topic" effect="yoko" style={{bottom: this.props.showCreate ? 0 : -72}} />
+            <select valueLink={this.linkState('index')}>
+              <option value="images">Images</option>
+              <option value="posts">Posts</option>
+            </select>
           </form>
         </div>
       </div>
